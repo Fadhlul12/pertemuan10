@@ -1,67 +1,67 @@
 <template>
-  <div class="layout">
-    <aside class="sidebar">
-      <h1>Perpustakaan Digital</h1>
-      <nav>
-        <router-link to="/">Home</router-link>
-        <router-link to="/login">Login</router-link>
-        <router-link to="/dashboard">Dashboard</router-link>
-<router-link to="/dashboard/search">Cari Buku</router-link>
-<router-link to="/dashboard/my-books">Buku Saya</router-link>
-
-        <router-link to="/admin">Admin</router-link>
-      </nav>
-    </aside>
-
-    <main class="content">
-      <router-view />
+  <div class="app">
+    <NavBar />
+    <main class="main-content">
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" :key="$route.path" />
+        </transition>
+      </router-view>
     </main>
+    <footer class="app-footer">
+      <p>© 2023 GameTrack - All rights reserved</p>
+    </footer>
   </div>
 </template>
 
-<style scoped>
-.layout {
+<script setup>
+import NavBar from '@/components/NavBar.vue'
+</script>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('@/assets/car.png'); /* ganti dengan background cyberpunk kamu */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  color: white;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.app {
   display: flex;
+  flex-direction: column;
   min-height: 100vh;
 }
 
-.sidebar {
-  background-color: #1f2937;
-  color: white;
-  padding: 2rem 1.5rem;
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.sidebar h1 {
-  font-size: 1.6rem;
-  margin-bottom: 2rem;
-  text-align: left;
-}
-
-.sidebar nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.sidebar a {
-  color: #60a5fa;
-  text-decoration: none;
-  padding: 0.4rem 0.5rem;
-  border-radius: 4px;
-  text-align: left;
-}
-
-.sidebar a.router-link-exact-active {
-  background-color: #2563eb;
-  color: white;
-}
-
-.content {
+.main-content {
   flex: 1;
-  padding: 3rem;
+  padding: 0;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+
+.app-footer {
+  text-align: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.5);
+  color: #eee;
+  backdrop-filter: blur(8px);
+  font-size: 0.9rem;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
