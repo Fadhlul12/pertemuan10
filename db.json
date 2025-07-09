@@ -1,0 +1,55 @@
+{
+  "games": [
+    {
+      "id": "1",
+      "title": "Zelda",
+      "cover": "https://th.bing.com/th/id/OIP.QXmKx_lCvQ_MR7NGgzjlrQHaEK?w=229&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+      "platforms": [
+        "Switch"
+      ],
+      "progress": 50
+    },
+    {
+      "title": "God of War",
+      "cover": "https://upload.wikimedia.org/wikipedia/en/a/a7/God_of_War_4_cover.jpg",
+      "platforms": [
+        "PS5"
+      ],
+      "progress": 100,
+      "id": "2"
+    },
+    {
+      "id": "ccfa",
+      "title": "Point Blank",
+      "cover": "https://th.bing.com/th/id/OIP.Il3-WwjvoDeh9b0PZAYGEAHaEL?w=310&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+      "platforms": [
+        "PC"
+      ],
+      "progress": 60,
+      "notes": "Menyelesaikan misi hari ke 10"
+    },
+    {
+      "title": "The Foresg",
+      "cover": "https://th.bing.com/th/id/OIP.Ib_4I38aIs7wjXemo_hgtgHaIE?w=148&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+      "platforms": [
+        "Steam"
+      ],
+      "progress": 10,
+      "id": "8823"
+    }
+  ],
+  "backlog": [
+    {
+      "id": "a1d9",
+      "gameId": "8823",
+      "addedAt": "2025-07-09T05:23:00.359Z",
+      "priority": "medium"
+    },
+    {
+      "id": "cd38",
+      "gameId": "ccfa",
+      "addedAt": "2025-07-09T05:23:34.802Z",
+      "priority": "medium"
+    }
+  ]
+}

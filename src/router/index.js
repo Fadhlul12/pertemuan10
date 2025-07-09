@@ -1,59 +1,57 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
-import Home from '../views/Home.vue'
-import Login from '../views/Login.vue'
-import DashboardUser from '../views/user/DashboardUser.vue'
-import SearchBooks from '../views/user/SearchBooks.vue'
-import MyBooks from '../views/user/MyBooks.vue'
-import AdminDashboard from '../views/admin/AdminDashboard.vue'
-import ManageBooks from '../views/admin/ManageBooks.vue'
-import ManageUsers from '../views/admin/ManageUsers.vue'
-import Reports from '../views/admin/Reports.vue'
+import { useAuthStore } from '@/stores/auth'
 
 const routes = [
-  { path: '/', name: 'Home', component: Home },
-  { path: '/login', name: 'Login', component: Login },
   {
-    path: '/dashboard',
-    name: 'UserDashboard',
-    component: DashboardUser
+    path: '/',
+    name: 'dashboard',
+    component: () => import('@/views/DashboardView.vue'),
+    meta: { requiresAuth: true }
   },
   {
-    path: '/dashboard/search',
-    name: 'SearchBooks',
-    component: SearchBooks
+    path: '/collection',
+    name: 'collection',
+    component: () => import('@/views/CollectionView.vue'),
+    meta: { requiresAuth: true }
   },
   {
-    path: '/dashboard/my-books',
-    name: 'MyBooks',
-    component: MyBooks
+    path: '/backlog',
+    name: 'backlog',
+    component: () => import('@/views/BacklogView.vue'),
+    meta: { requiresAuth: true }
   },
   {
-    path: '/admin',
-    name: 'AdminDashboard',
-    component: AdminDashboard
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/AuthView.vue')
   },
+
   {
-    path: '/admin/books',
-    name: 'ManageBooks',
-    component: ManageBooks
-  },
-  {
-    path: '/admin/users',
-    name: 'ManageUsers',
-    component: ManageUsers
-  },
-  {
-    path: '/admin/reports',
-    name: 'Reports',
-    component: Reports
-  }
-  
+  path: '/profile',
+  name: 'profile',
+  component: () => import('@/views/ProfileView.vue'),
+  meta: { requiresAuth: true }
+},
+{
+  path: '/games/:id',
+  name: 'GameDetail',
+  component: () => import('@/views/GameDetailView.vue')
+},
+
 ]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const authStore = useAuthStore()
+  if (to.meta.requiresAuth && !authStore.isAuthenticated) {
+    next('/login')
+  } else {
+    next()
+  }
 })
 
 export default router
